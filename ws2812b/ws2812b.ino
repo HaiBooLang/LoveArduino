@@ -24,7 +24,9 @@ void setup() {
 }
 
 void loop() {
-  fill_rainbow(leds, NUM_LEDS, beginHue, deltaHue);
-  FastLED.show();
-  delay(1000);
+  for (int i = 1; i < 6; i++) {
+    fill_rainbow(leds, NUM_LEDS, beginHue, i);
+    FastLED.show();
+    delay(300);
+  }
 }
