@@ -24,9 +24,6 @@ void setup() {
 }
 
 void loop() {
-  for (int i = 1; i < 6; i++) {
-    fill_rainbow(leds, NUM_LEDS, beginHue, i);
-    FastLED.show();
-    delay(300);
-  }
+  fill_rainbow(leds, NUM_LEDS, beginHue, random8(10));
+  FastLED.show();
 }
