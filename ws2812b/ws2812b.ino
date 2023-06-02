@@ -5,9 +5,12 @@
 #define LED_PIN 2
 #define COLOR_ORDER GRB
 
-uint8_t max_bright = 2;
+uint8_t max_bright = 5;
 
 CRGB leds[NUM_LEDS];
+
+uint8_t beginHue = 0;
+uint8_t deltaHue = 1;
 
 void setup() {
   FastLED.addLeds<WS2812, LED_PIN, GRB>(leds, NUM_LEDS);
@@ -16,23 +19,12 @@ void setup() {
   for (int i = 0; i < NUM_LEDS; i++) {
     leds[i] = CRGB::Green;
   }
+  FastLED.show();
+  delay(1000);
 }
 
 void loop() {
-
-  for (int i = 0; i <= NUM_LEDS; i++) {
-    leds[i] = CRGB(0, 0, 255);
-    FastLED.show();
-    delay(40);
-  }
-  for (int i = NUM_LEDS; i >= 0; i--) {
-    leds[i] = CRGB(0, 255, 0);
-    FastLED.show();
-    delay(40);
-  }
-  for (int i = NUM_LEDS; i >= 0; i--) {
-    leds[i] = CRGB(255, 0, 0);
-    FastLED.show();
-    delay(40);
-  }
+  fill_rainbow(leds, NUM_LEDS, beginHue, deltaHue);
+  FastLED.show();
+  delay(1000);
 }
